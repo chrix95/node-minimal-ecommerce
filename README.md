@@ -31,8 +31,8 @@
     - [x] Get User
     - [x] Get ALl User
     - [x] User Stats 
-- [ ] Payment
-    - [ ] Stripe Payment
+- [x] Payment
+    - [x] Stripe Payment
 ### Instruction to use
 - Clone the project 
 ``` bash
@@ -48,6 +48,7 @@ MONGO_URL=
 PORT=3000
 PASSWORD_SECRET=
 JWT_SECRET=
+STRIPE_KEY=
 ```
 - Serve the project on the defined port using:
 ```bash
