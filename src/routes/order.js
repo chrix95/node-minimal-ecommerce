@@ -97,6 +97,7 @@ router.get('/', verifyTokenAndAdmin, async (req, res) => {
 
 // MONTHLY INCOME
 router.get('/income', verifyTokenAndAdmin, async (req, res) => {
+    const productId = req.query.pid;
     const date = new Date();
     const lastMonth = new Date(date.getFullYear(), date.getMonth() - 1, date.getDate());
     const previousMonth = new Date(date.getFullYear(), date.getMonth() - 2, date.getDate());
@@ -104,7 +105,8 @@ router.get('/income', verifyTokenAndAdmin, async (req, res) => {
         const income = await Order.aggregate([
             {
                 $match: {
-                    createdAt: { $gte: previousMonth  }
+                    createdAt: { $gte: previousMonth  },
+                    ...(productId && { products: { $elemMatch: {productId} }}),
                 },
             },
             {
